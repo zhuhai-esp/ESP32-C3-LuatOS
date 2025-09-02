@@ -10,20 +10,20 @@ void setup() {
   pinMode(PIN_LED1, OUTPUT);
   pinMode(PIN_LED2, OUTPUT);
 
-  ledcSetup(0, 800, 10);
+  ledcSetup(0, 1000, 10);
   ledcAttachPin(PIN_LED1, 0);
-  ledcSetup(1, 800, 10);
+  ledcSetup(1, 1000, 10);
   ledcAttachPin(PIN_LED2, 1);
 }
 
 void loop() {
   static int duty = 0;
-  static int step = 1;
+  static int step = 10;
   ledcWrite(0, duty);
-  ledcWrite(1, 40 - duty);
-  delay(30);
+  ledcWrite(1, 1000 - duty);
+  delay(20);
   duty += step;
-  if (abs(duty - 20) >= 20) {
+  if (abs(duty-500) >= 500) {
     step = -step;
   }
 }
